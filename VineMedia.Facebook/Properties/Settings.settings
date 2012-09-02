@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="VineMedia.Facebook.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="FacebookAppId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">411006568948218</Value>
+    </Setting>
+    <Setting Name="FacebookAppSecret" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">723344edaf46a99271e34380a9015c2f</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

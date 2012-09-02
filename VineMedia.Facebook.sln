@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VineMedia.Facebook.Web", "VineMedia.Facebook.Web\VineMedia.Facebook.Web.csproj", "{0BF8E398-8C9A-4655-AB2F-34CD6B0B1B18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VineMedia.Facebook", "VineMedia.Facebook\VineMedia.Facebook.csproj", "{483C6BCF-CB14-45C8-8CC0-B820FF28D8D9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0BF8E398-8C9A-4655-AB2F-34CD6B0B1B18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BF8E398-8C9A-4655-AB2F-34CD6B0B1B18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BF8E398-8C9A-4655-AB2F-34CD6B0B1B18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BF8E398-8C9A-4655-AB2F-34CD6B0B1B18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{483C6BCF-CB14-45C8-8CC0-B820FF28D8D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{483C6BCF-CB14-45C8-8CC0-B820FF28D8D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{483C6BCF-CB14-45C8-8CC0-B820FF28D8D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{483C6BCF-CB14-45C8-8CC0-B820FF28D8D9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
