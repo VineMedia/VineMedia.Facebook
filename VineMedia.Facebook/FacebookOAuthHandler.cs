@@ -7,7 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Security;
+using Castle.Windsor;
 using Facebook;
+using VineMedia.Facebook.FormsAuth;
 using VineMedia.Facebook.Properties;
 
 namespace VineMedia.Facebook
@@ -21,10 +23,11 @@ namespace VineMedia.Facebook
 
 		public void ProcessRequest(HttpContext context)
 		{
-			var stateCookie = context.Request.Cookies[FacebookAuthProvider.StateCookie];
+			var stateCookie = context.Request.Cookies[FacebookAuthenticationProvider.StateCookieName];
 			Guid cookieStateValue;
 			Guid querystringStateValue;
 			FacebookOAuthResult facebookResult;
+			string redirectUrl = context.Request.QueryString["redir"];
 
 			var client = new FacebookClient();
 			
@@ -35,36 +38,68 @@ namespace VineMedia.Facebook
 				|| !Guid.TryParse(facebookResult.State, out querystringStateValue)
 				|| cookieStateValue != querystringStateValue)
 			{
-				throw new AuthenticationException();
+				context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+				context.Response.End();
+				return;
 			}
 
 			var url = string.Format("https://graph.facebook.com/oauth/access_token?client_id={0}&redirect_uri={1}&client_secret={2}&code={3}",
-				Settings.Default.FacebookAppId, "http://facebook.dev.vinemedia.com.au/facebookouth.ashx", Settings.Default.FacebookAppSecret, facebookResult.Code);
-			var response = new WebClient().DownloadString(new Uri(url));
+				Settings.Default.FacebookAppId, "http://facebook.dev.vinemedia.com.au/facebookouth.axd", Settings.Default.FacebookAppSecret, facebookResult.Code);
 
-			//var u = new Uri("http://facebook.dev.vinemedia.com.au/facebookouth.ashx?" + response);
-			var p = HttpUtility.ParseQueryString(response);
-
-			var token = p["access_token"];
-			var expires = int.Parse(p["expires"]);
-
-			context.Response.Cookies.Add(new HttpCookie(FacebookAuthProvider.TokenCookie, p["access_token"]) { Expires = DateTime.Now.AddSeconds(expires) });
-			client.AccessToken = token;
-			dynamic me = client.Get("me");
-
-			FormsAuthentication.SetAuthCookie(me.username, true);
-
-			string redirectUrl = context.Request.Cookies[FacebookAuthProvider.ReturnCookie] == null ? context.Request.Cookies[FacebookAuthProvider.ReturnCookie].Value : null;
-
-			context.Response.Cookies[FacebookAuthProvider.StateCookie].Expires = DateTime.Now.AddSeconds(-60);
-			context.Response.Cookies[FacebookAuthProvider.StateCookie].Expires = DateTime.Now.AddSeconds(-60);
-
-			if (redirectUrl != null)
+			try
 			{
-				context.Response.Redirect(context.Request.Cookies[FacebookAuthProvider.ReturnCookie].Value, false);
+				var response = new WebClient().DownloadString(new Uri(url));
+				var p = HttpUtility.ParseQueryString(response);
+
+				var token = p["access_token"];
+				var expires = int.Parse(p["expires"]);
+
+				client.AccessToken = token;
+				dynamic me = client.Get("me");
+
+				FormsAuthentication.SetAuthCookie(me.username, true);
+
+				MembershipUser user = Membership.GetUser(me.username, true);
+				if (user == null)
+				{
+					user = Membership.CreateUser(me.username, "idontneedapassword");
+				}
+
+
+				if (!string.IsNullOrWhiteSpace(me.email) && string.IsNullOrWhiteSpace(user.Email))
+				{
+					user.Email = me.email;
+					Membership.UpdateUser(user);
+				}
+
+				var profile = ProfileCommon.Create(me.username, true) as ProfileCommon;
+				profile.FirstName = me.first_name;
+				profile.LastName = me.last_name;
+				profile.Name = me.name;
+				profile.Locale = me.locale;
+				profile.Gender = me.gender;
+				profile.FacebookUserId = me.id;
+				profile.FacebookToken = token;
+				profile.Timezone = me.timezone;
+				profile.Save();
+
+				context.Response.Cookies[FacebookAuthenticationProvider.StateCookieName].Expires = DateTime.Now.AddSeconds(-60);
+
+				if (redirectUrl != null)
+				{
+					context.Response.Redirect(redirectUrl, false);
+				}
+				else
+				{
+					context.Response.Redirect("http://" + context.Request.Url.DnsSafeHost, false);
+				}
 			}
-
-
+			catch (Exception)
+			{
+				context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+				context.Response.End();
+				return;		
+			}
 		}
 	}
 }

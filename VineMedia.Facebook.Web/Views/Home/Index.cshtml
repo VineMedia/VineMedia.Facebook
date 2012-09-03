@@ -3,3 +3,10 @@
 }
 
 <h2>Index</h2>
+
+@if (Request.IsAuthenticated)
+{
+    <div>Hello @ViewBag.FirstName</div>
+    
+    @Html.ActionLink("Logout", "Logout", "Account");
+}

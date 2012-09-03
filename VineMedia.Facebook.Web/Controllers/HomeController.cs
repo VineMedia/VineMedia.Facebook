@@ -6,16 +6,14 @@ using System.Web.Mvc;
 
 namespace VineMedia.Facebook.Web.Controllers
 {
+	[Authorize]
     public class HomeController : Controller
     {
-		public IFacebookAuthProvider AuthProvider { get; set; }
-
         public ActionResult Index()
         {
-
-			if (!Request.IsAuthenticated)
+			if (Profile != null)
 			{
-				var currentUser = AuthProvider.GetCurrentUser();
+				ViewBag.FirstName = ((ProfileCommon)Profile).FirstName;
 			}
 
             return View();

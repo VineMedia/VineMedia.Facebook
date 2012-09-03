@@ -44,16 +44,7 @@ namespace VineMedia.Facebook.Web
 			
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			
-			RouteTable.Routes.IgnoreRoute("{resource}.ashx/{*pathInfo}");
-			//RouteTable.Routes.IgnoreRoute("{resource}.ashx");
-			//RouteConfig.RegisterRoutes(RouteTable.Routes);
-
-			RouteTable.Routes.MapRoute(
-				"Default", // Route name
-				"{controller}/{action}/{id}", // URL with parameters
-				new { controller = "Home", action = "Index", id = UrlParameter.Optional }, // Parameter defaults
-				new[] { "VineMedia.Fidelity.Site.Controllers" }
-			);
+			RouteConfig.RegisterRoutes(RouteTable.Routes);
 
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
 		}
