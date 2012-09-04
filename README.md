@@ -34,4 +34,6 @@ To handle this callback there is a `HttpHandler` that will pickup this request a
 
 ## Project References ##
 
-1. facebook-csharp-sdk/facebook-csharp-sdk
+1. [Facebook C# SDK](https://github.com/facebook-csharp-sdk/facebook-csharp-sdk)
+2. [Dapper](https://github.com/SamSaffron/dapper-dot-net)
+3. [Castle Windsor](https://github.com/castleproject/Castle.Windsor-READONLY)
