@@ -1,4 +1,8 @@
-Library for Authenticating with Facebook OAuth and populating the Profile object with information from the user's open graph.
+Library for Authenticating with Facebook OAuth and populating the Profile object with information from the user's open graph. 
+It is designed to work with FormsAuthentication, it will create users and populate their profile when they log in & authorise your application.
+
+This is built with IoC in mind from the beginning. The `IFacebookAuthenticationProvider` is the mockable inteface that you can 
+inject into your application, and if you're using Castle.Windsor the library has a `IWindsorInstaller` so if you include the VineMedia.Facebook assembly in your container installer the authentication provider will be available automatically.
 
 There are two projects in this solution
  1. VineMedia.Facebook - This is the library for using Facebook
