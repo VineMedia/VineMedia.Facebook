@@ -52,8 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FacebookAuthenticationProvider.cs" />
+    <Compile Include="FacebookConfig.cs" />
     <Compile Include="FacebookOAuthHandler.cs" />
-    <Compile Include="FormsAuth\Membership.cs" />
     <Compile Include="ProfileCommon.cs" />
     <Compile Include="Installer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

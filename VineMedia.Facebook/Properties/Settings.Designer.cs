@@ -25,7 +25,7 @@ namespace VineMedia.Facebook.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("411006568948218")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string FacebookAppId {
             get {
                 return ((string)(this["FacebookAppId"]));
@@ -34,7 +34,7 @@ namespace VineMedia.Facebook.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("723344edaf46a99271e34380a9015c2f")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string FacebookAppSecret {
             get {
                 return ((string)(this["FacebookAppSecret"]));

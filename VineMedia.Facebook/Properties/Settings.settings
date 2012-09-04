@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="FacebookAppId" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">411006568948218</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="FacebookAppSecret" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">723344edaf46a99271e34380a9015c2f</Value>
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>
