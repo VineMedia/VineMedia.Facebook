@@ -18,6 +18,7 @@ On your login page, do this:
 This will bounce the user to Facebook's OAuth page if they aren't authenticated.  Facebook will then redirect them back to `facebookouth.axd` on your domain with an authentication code.
 
 To handle this callback there is a `HttpHandler` that will pickup this request and convert it into an authenticated user, creating the `Membership` & `Profile` data as needed.  Register this handler in your web.config:
+
 	<system.webServer>
 		<handlers>
 			<add name="FaceBookOAuth" path="facebookouth.axd" verb="POST,GET,HEAD" type="VineMedia.Facebook.FacebookOAuthHandler, VineMedia.Facebook" preCondition="integratedMode" />
