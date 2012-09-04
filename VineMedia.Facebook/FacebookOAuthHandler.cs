@@ -26,7 +26,7 @@ namespace VineMedia.Facebook
 		{			
 			try
 			{
-				var response = Container.Resolve<IFacebookAuthenticationProvider>().ParseResponse(context);				
+				var response = FacebookAuthenticationProvider.ParseResponse(context);				
 
 				MembershipUser user = Membership.GetUser(response.User.username, true);
 				if (user == null)
@@ -54,7 +54,7 @@ namespace VineMedia.Facebook
 				profile.Save();
 
 				FormsAuthentication.SetAuthCookie(response.User.username, true);
-
+				
 				context.Response.Redirect("http://" + context.Request.Url.DnsSafeHost, false);
 			}
 			catch (Exception)

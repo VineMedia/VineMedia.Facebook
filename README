@@ -7,3 +7,6 @@ inject into your application, and if you're using Castle.Windsor the library has
 There are two projects in this solution
  1. VineMedia.Facebook - This is the library for using Facebook
  2. VineMedia.Facebook.Web - This is a demo MVC4 application showing the authentication working.
+
+ ** References
+  1. https://github.com/facebook-csharp-sdk/facebook-csharp-sdk
