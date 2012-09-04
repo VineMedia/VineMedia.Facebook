@@ -1,1 +1,5 @@
 Library for Authenticating with Facebook OAuth and populating the Profile object with information from the user's open graph.
+
+There are two projects in this solution
+ 1. VineMedia.Facebook - This is the library for using Facebook
+ 1. VineMedia.Facebook.Web - This is a demo MVC4 application showing the authentication working.
