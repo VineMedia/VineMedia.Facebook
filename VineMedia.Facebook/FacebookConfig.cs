@@ -10,5 +10,6 @@ namespace VineMedia.Facebook
 	{
 		public string FacebookAppId { get; set; }
 		public string FacebookAppSecret { get; set; }
+		public string OAuthCallbackPath { get; set; }
 	}
 }

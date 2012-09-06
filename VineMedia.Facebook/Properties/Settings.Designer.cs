@@ -40,5 +40,14 @@ namespace VineMedia.Facebook.Properties {
                 return ((string)(this["FacebookAppSecret"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string OAuthCallbackPath {
+            get {
+                return ((string)(this["OAuthCallbackPath"]));
+            }
+        }
     }
 }
