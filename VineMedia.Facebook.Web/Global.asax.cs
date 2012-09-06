@@ -41,6 +41,7 @@ namespace VineMedia.Facebook.Web
 			ControllerBuilder.Current.SetControllerFactory(controllerFactory);
 
 			container.Install(FromAssembly.InThisApplication());
+			container.Install(FromAssembly.Containing<IFacebookAuthenticationProvider>())
 			
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			

@@ -27,7 +27,6 @@ namespace VineMedia.Facebook.Web
 		{
 			return AllTypes.FromThisAssembly()
 				.BasedOn<IController>()
-				//.If(Component.IsInSameNamespaceAs<HomeController>())
 				.If(t => typeof(Controller).IsAssignableFrom(t));
 		}
 	}
