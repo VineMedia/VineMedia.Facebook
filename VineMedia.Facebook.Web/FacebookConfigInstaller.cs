@@ -34,7 +34,6 @@ namespace VineMedia.Facebook.Web
 		{
 			public string SettingName { get; set; }
 			public string SettingValue { get; set; }
-			public string OAuthCallbackPath { get; set; }
 		}
 	}
 }

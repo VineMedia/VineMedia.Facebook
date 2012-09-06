@@ -24,7 +24,7 @@ The core of the authentication process is the `FacebookAuthenticationProvider` c
  To pass the Facebook App ID and Secret to the provider you can either set these application settings in your web.config
 
  ```xml
-    <applicationSettings>
+<applicationSettings>
     <VineMedia.Facebook.Properties.Settings>
         <setting name="FacebookAppId" serializeAs="String">
             <value />
