@@ -24,7 +24,7 @@ namespace VineMedia.Facebook.Web
 			{
 				FacebookAppSecret = settings.FirstOrDefault(s => s.SettingName == "FacebookAppSecret").SettingValue,
 				FacebookAppId = settings.FirstOrDefault(s => s.SettingName == "FacebookAppId").SettingValue,
-				OAuthCallbackPath = "/facebookouth.axd";
+				OAuthCallbackPath = "/facebookoauth.axd";
 			};
 
 			container.Register(Component.For<FacebookConfig>().LifestyleSingleton().Instance(facebookConfig));

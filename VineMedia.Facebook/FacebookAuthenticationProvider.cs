@@ -30,7 +30,7 @@ namespace VineMedia.Facebook
 
 					if (string.IsNullOrWhiteSpace(facebookConfig.OAuthCallbackPath))
 					{
-						facebookConfig.OAuthCallbackPath = "/facebookouth.axd";
+						facebookConfig.OAuthCallbackPath = "/facebookoauth.axd";
 					}
 				}
 
