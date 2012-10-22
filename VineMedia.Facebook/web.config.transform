@@ -8,5 +8,5 @@
 		<handlers>
 			<add name="FaceBookOAuth" path="facebookouth.axd" verb="POST,GET,HEAD" type="VineMedia.Facebook.FacebookOAuthHandler, VineMedia.Facebook" preCondition="integratedMode" />
 		</handlers>
-    <system.webServer>
+    </system.webServer>
 </configuration>
