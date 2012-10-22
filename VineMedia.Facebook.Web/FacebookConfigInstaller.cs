@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Web;
 using Castle.MicroKernel.Registration;
 using Dapper;
 
@@ -24,7 +22,7 @@ namespace VineMedia.Facebook.Web
 			{
 				FacebookAppSecret = settings.FirstOrDefault(s => s.SettingName == "FacebookAppSecret").SettingValue,
 				FacebookAppId = settings.FirstOrDefault(s => s.SettingName == "FacebookAppId").SettingValue,
-				OAuthCallbackPath = "/facebookoauth.axd";
+				OAuthCallbackPath = "/facebookoauth.axd"
 			};
 
 			container.Register(Component.For<FacebookConfig>().LifestyleSingleton().Instance(facebookConfig));

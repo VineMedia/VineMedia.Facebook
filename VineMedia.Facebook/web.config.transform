@@ -1,0 +1,12 @@
+﻿<configuration>
+	<system.web>
+		<httpHandlers>
+			<add verb="*" path="facebookouth.axd" type="VineMedia.Facebook.FacebookOAuthHandler, VineMedia.Facebook" />
+		</httpHandlers>
+	</system.web>
+    <system.webServer>
+		<handlers>
+			<add name="FaceBookOAuth" path="facebookouth.axd" verb="POST,GET,HEAD" type="VineMedia.Facebook.FacebookOAuthHandler, VineMedia.Facebook" preCondition="integratedMode" />
+		</handlers>
+    <system.webServer>
+</configuration>

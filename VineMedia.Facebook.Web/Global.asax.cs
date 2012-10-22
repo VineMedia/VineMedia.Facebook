@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -40,8 +33,8 @@ namespace VineMedia.Facebook.Web
 			var controllerFactory = new WindsorControllerFactory(container.Kernel);
 			ControllerBuilder.Current.SetControllerFactory(controllerFactory);
 
-			container.Install(FromAssembly.InThisApplication());
-			container.Install(FromAssembly.Containing<IFacebookAuthenticationProvider>())
+			container.Install(FromAssembly.This());
+			container.Install(FromAssembly.Containing<IFacebookAuthenticationProvider>());
 			
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			

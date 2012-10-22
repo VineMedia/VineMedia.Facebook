@@ -40,8 +40,8 @@ namespace VineMedia.Facebook
 		}
 		private FacebookConfig facebookConfig;
 
-		private const string OAuthUrl = "https://www.facebook.com/dialog/oauth?client_id={0}&redirect_uri={1}&scope={2}&state={3}";
-		private const string TokenUrl = "https://graph.facebook.com/oauth/access_token?client_id={0}&redirect_uri={1}&client_secret={2}&code={3}";
+		private const string OAuthUrl = "https://www.facebook.com/dialog/oauth?client_id={0}&redirect_uri={1}/facebookouth.axd&scope={2}&state={3}";
+		private const string TokenUrl = "https://graph.facebook.com/oauth/access_token?client_id={0}&redirect_uri={1}/facebookouth.axd&client_secret={2}&code={3}";
 		private const string StateCookieName = "FSC-50AD5C44-8BF2-4B4A-B87A-2B39FBF781EF";
 		private const int StateCookieExpirySeconds = 30;
 
