@@ -7,6 +7,8 @@ There are two projects in this solution
 
 ## Usage ##
 
+Install with [Nuget](https://nuget.org/packages/FacebookAuth)
+
 There are two parts to the authentication process:
  1. If the current user isn't authenticated, redirecting them to Facebook
  2. Handling the OAuth callback and turning that into an authenticated user with a profile.
