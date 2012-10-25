@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Profile;
+﻿using System.Web.Profile;
 
 namespace VineMedia.Facebook
 {
@@ -18,11 +13,11 @@ namespace VineMedia.Facebook
 		{
 			get
 			{
-				return ((string)(this.GetPropertyValue("FirstName")));
+				return ((string)(GetPropertyValue("FirstName")));
 			}
 			set
 			{
-				this.SetPropertyValue("FirstName", value);
+				SetPropertyValue("FirstName", value);
 			}
 		}
 
@@ -30,11 +25,11 @@ namespace VineMedia.Facebook
 		{
 			get
 			{
-				return ((string)(this.GetPropertyValue("Name")));
+				return ((string)(GetPropertyValue("Name")));
 			}
 			set
 			{
-				this.SetPropertyValue("Name", value);
+				SetPropertyValue("Name", value);
 			}
 		}
 
@@ -42,11 +37,11 @@ namespace VineMedia.Facebook
 		{
 			get
 			{
-				return ((long)(this.GetPropertyValue("Timezone")));
+				return ((long)(GetPropertyValue("Timezone")));
 			}
 			set
 			{
-				this.SetPropertyValue("Timezone", value);
+				SetPropertyValue("Timezone", value);
 			}
 		}
 
@@ -54,11 +49,11 @@ namespace VineMedia.Facebook
 		{
 			get
 			{
-				return ((string)(this.GetPropertyValue("Locale")));
+				return ((string)(GetPropertyValue("Locale")));
 			}
 			set
 			{
-				this.SetPropertyValue("Locale", value);
+				SetPropertyValue("Locale", value);
 			}
 		}
 
@@ -66,11 +61,11 @@ namespace VineMedia.Facebook
 		{
 			get
 			{
-				return ((string)(this.GetPropertyValue("Gender")));
+				return ((string)(GetPropertyValue("Gender")));
 			}
 			set
 			{
-				this.SetPropertyValue("Gender", value);
+				SetPropertyValue("Gender", value);
 			}
 		}
 
@@ -78,11 +73,11 @@ namespace VineMedia.Facebook
 		{
 			get
 			{
-				return ((string)(this.GetPropertyValue("LastName")));
+				return ((string)(GetPropertyValue("LastName")));
 			}
 			set
 			{
-				this.SetPropertyValue("LastName", value);
+				SetPropertyValue("LastName", value);
 			}
 		}
 
@@ -90,11 +85,11 @@ namespace VineMedia.Facebook
 		{
 			get
 			{
-				return ((string)(this.GetPropertyValue("FacebookUserId")));
+				return ((string)(GetPropertyValue("FacebookUserId")));
 			}
 			set
 			{
-				this.SetPropertyValue("FacebookUserId", value);
+				SetPropertyValue("FacebookUserId", value);
 			}
 		}
 
@@ -102,11 +97,23 @@ namespace VineMedia.Facebook
 		{
 			get
 			{
-				return ((string)(this.GetPropertyValue("FacebookToken")));
+				return ((string)(GetPropertyValue("FacebookToken")));
 			}
 			set
 			{
-				this.SetPropertyValue("FacebookToken", value);
+				SetPropertyValue("FacebookToken", value);
+			}
+		}
+
+		public virtual string Email
+		{
+			get
+			{
+				return ((string)(GetPropertyValue("Email")));
+			}
+			set
+			{
+				SetPropertyValue("Email", value);
 			}
 		}
 	}

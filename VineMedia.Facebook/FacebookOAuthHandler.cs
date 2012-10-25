@@ -51,6 +51,7 @@ namespace VineMedia.Facebook
 				profile.FacebookUserId = response.User.id;
 				profile.FacebookToken = response.Token;
 				profile.Timezone = response.User.timezone;
+				profile.Email = response.User.email;
 				profile.Save();
 
 				FormsAuthentication.SetAuthCookie(response.User.username, true);

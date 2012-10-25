@@ -2,13 +2,20 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>FacebookAuth</id>
-        <version>1.0.5</version>
+        <version>1.0.10</version>
         <title>Facebook Authentication Provider</title>
         <authors>gslaven</authors>
         <owners>gslaven</owners>
         <projectUrl>https://github.com/VineMedia/VineMedia.Facebook</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Library for Authenticating with Facebook OAuth and populating the Profile object with information from the user's open graph. It is designed to work with FormsAuthentication, it will create users and populate their profile when they log in &amp; authorise your application.</description>
+		<summary>
+			Library for Authenticating with Facebook OAuth and populating the Profile object with information from the user's open graph. It is designed to work with FormsAuthentication, it will create users and populate their profile when they log in &amp; authorise your application.</summary>
+        <description>
+			Library for Authenticating with Facebook OAuth and populating the Profile object with information from the user's open graph. It is designed to work with FormsAuthentication, it will create users and populate their profile when they log in &amp; authorise your application.
+
+			For more detailed instructions see the GitHub readme https://github.com/VineMedia/VineMedia.Facebook
+		</description>
+		<releaseNotes>Added the Email property to the Profile</releaseNotes>
         <tags>facebook authentication</tags>
         <dependencies>
             <dependency id="Facebook" version="6.0.22" />
