@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Security.Authentication;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
-using System.Web.Security;
 using Facebook;
 using VineMedia.Facebook.Properties;
 
@@ -25,13 +20,14 @@ namespace VineMedia.Facebook
 					{
 						FacebookAppId = Settings.Default.FacebookAppId,
 						FacebookAppSecret = Settings.Default.FacebookAppSecret,
-						OAuthCallbackPath = Settings.Default.OAuthCallbackPath
+						OAuthCallbackPath = Settings.Default.OAuthCallbackPath,
+						RedirectUrl = Settings.Default.RedirectUrl
 					};
 
 					if (string.IsNullOrWhiteSpace(facebookConfig.OAuthCallbackPath))
 					{
 						facebookConfig.OAuthCallbackPath = "/facebookoauth.axd";
-					}
+					}					
 				}
 
 				return facebookConfig;
@@ -43,14 +39,20 @@ namespace VineMedia.Facebook
 		private const string OAuthUrl = "https://www.facebook.com/dialog/oauth?client_id={0}&redirect_uri={1}/facebookouth.axd&scope={2}&state={3}";
 		private const string TokenUrl = "https://graph.facebook.com/oauth/access_token?client_id={0}&redirect_uri={1}/facebookouth.axd&client_secret={2}&code={3}";
 		private const string StateCookieName = "FSC-50AD5C44-8BF2-4B4A-B87A-2B39FBF781EF";
+		private const string RedirectCookieName = "2936978D-0ACF-4D67-9FD7-8F915B369DC2";
 		private const int StateCookieExpirySeconds = 30;
 
-		public void Authenticate()
+		public void Authenticate(string redirectUrl = null)
 		{
 			if (!HttpContext.Request.IsAuthenticated)
 			{
 				var state = Guid.NewGuid();
 				HttpContext.Response.Cookies.Add(new HttpCookie(StateCookieName, state.ToString()) { Expires = DateTime.Now.AddSeconds(StateCookieExpirySeconds) });
+
+				if (!string.IsNullOrWhiteSpace(redirectUrl))
+				{
+					HttpContext.Response.Cookies.Add(new HttpCookie(RedirectCookieName, redirectUrl));
+				}
 
 				var url = string.Format(OAuthUrl, FacebookConfig.FacebookAppId, HttpContext.Request.Url.GetLeftPart(UriPartial.Authority), "email", state);
 				HttpContext.Response.Redirect(url, false);
@@ -102,13 +104,25 @@ namespace VineMedia.Facebook
 				User = me
 			};
 		}
+
+		public string GetRedirectUrl(string defaultRedirect)
+		{
+			var redirectCookie = HttpContext.Request.Cookies[RedirectCookieName];
+			Uri result;
+			if (redirectCookie != null && Uri.TryCreate(redirectCookie.Value, UriKind.Absolute, out result))
+			{
+				return result.ToString();
+			}
+
+			return facebookConfig.RedirectUrl ?? defaultRedirect;
+		}
 	}
 
 	public interface IFacebookAuthenticationProvider 
 	{
-		void Authenticate();
+		void Authenticate(string redirectUrl = null);
 		FacebookOAuthResponse ParseResponse(HttpContext context);
-
+		string GetRedirectUrl(string defaultRedirect);
 	}
 
 	public class FacebookOAuthResponse

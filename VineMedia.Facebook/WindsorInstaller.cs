@@ -9,8 +9,7 @@ namespace VineMedia.Facebook
 	{
 		public void Install(IWindsorContainer container, IConfigurationStore store)
 		{
-			container.Register(Component.For<IFacebookAuthenticationProvider>().LifestylePerWebRequest().ImplementedBy<FacebookAuthenticationProvider>());
-			
+			container.Register(Component.For<IFacebookAuthenticationProvider>().LifestylePerWebRequest().ImplementedBy<FacebookAuthenticationProvider>());			
 			container.Register(Component.For<MembershipProvider>().LifestyleSingleton().Instance(Membership.Provider));
 
 			FacebookOAuthHandler.Container = container;

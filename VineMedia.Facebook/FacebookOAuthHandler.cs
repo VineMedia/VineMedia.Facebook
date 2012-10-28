@@ -55,8 +55,10 @@ namespace VineMedia.Facebook
 				profile.Save();
 
 				FormsAuthentication.SetAuthCookie(response.User.username, true);
-				
-				context.Response.Redirect("http://" + context.Request.Url.DnsSafeHost, false);
+
+				var redirectUrl = FacebookAuthenticationProvider.GetRedirectUrl(context.Request.Url.GetLeftPart(UriPartial.Authority));
+
+				context.Response.Redirect(redirectUrl, false);
 			}
 			catch (Exception)
 			{
