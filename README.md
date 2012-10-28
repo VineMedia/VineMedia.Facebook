@@ -34,11 +34,16 @@ The core of the authentication process is the `FacebookAuthenticationProvider` c
         <setting name="FacebookAppSecret" serializeAs="String">
             <value />
         </setting>
+        <setting name="RedirectUrl" serializeAs="String">
+            <value />
+        </setting>
     </VineMedia.Facebook.Properties.Settings>
 </applicationSettings>
 ```
 
 or again if you're using IoC you can instantiate the `FacebookConfig` class and add it to your container. There is an example of pulling this data out of a DB & injecting it with Castle [here](https://github.com/VineMedia/VineMedia.Facebook/blob/master/VineMedia.Facebook.Web/FacebookConfigInstaller.cs)
+
+The `RedirectUrl` property is optional.  If set to a fully qualified url, it is where the user will be redirected to after the authentication process is completed.  If you don't set this, they will be redirected to your site's root domain url.  Alternatively there is an optional parameter on the `Authenticate` method (below) that accepts a fully qualified url to redirect to.
 
 Ok, assuming you have an instance of the `FacebookAuthenticationProvider` available called `FacebookAuthProvider`, on your login page, do this:
 
@@ -48,7 +53,7 @@ Ok, assuming you have an instance of the `FacebookAuthenticationProvider` availa
 
 This will bounce the user to Facebook's OAuth page if they aren't authenticated.  Facebook will then redirect them back to `facebookouth.axd` on your domain with an authentication code.
 
-To handle this callback there is a `HttpHandler` that will pickup this request and convert it into an authenticated user, creating the `Membership` & `Profile` data as needed.  Register this handler in your web.config:
+To handle this callback there is a `HttpHandler` that will pickup this request and convert it into an authenticated user, creating the `Membership` & `Profile` data as needed.  Register this handler in your web.config: (Note, if you've installed this with Nuget, this will be added to your web.config automatically)
 
 ```xml
 <system.webServer>
