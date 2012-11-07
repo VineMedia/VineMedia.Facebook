@@ -26,13 +26,14 @@ namespace VineMedia.Facebook
 		{			
 			try
 			{
-				var response = FacebookAuthenticationProvider.ParseResponse(context);				
+				var response = FacebookAuthenticationProvider.ParseResponse(context);
 
-				MembershipUser user = Membership.GetUser(response.User.username, true);
+				var username = response.User.username ?? response.User.id;
+				MembershipUser user = Membership.GetUser(username, true);
 				if (user == null)
 				{
 					var password = Membership.GeneratePassword(Membership.MinRequiredPasswordLength, Membership.MinRequiredNonAlphanumericCharacters);
-					user = Membership.CreateUser(response.User.username, password);
+					user = Membership.CreateUser(username, password);
 				}
 
 
@@ -42,7 +43,7 @@ namespace VineMedia.Facebook
 					Membership.UpdateUser(user);
 				}
 
-				var profile = ProfileCommon.Create(response.User.username, true) as ProfileCommon;
+				var profile = ProfileCommon.Create(username, true) as ProfileCommon;
 				profile.FirstName = response.User.first_name;
 				profile.LastName = response.User.last_name;
 				profile.Name = response.User.name;
@@ -54,7 +55,7 @@ namespace VineMedia.Facebook
 				profile.Email = response.User.email;
 				profile.Save();
 
-				FormsAuthentication.SetAuthCookie(response.User.username, true);
+				FormsAuthentication.SetAuthCookie(username, true);
 
 				var redirectUrl = FacebookAuthenticationProvider.GetRedirectUrl(context.Request.Url.GetLeftPart(UriPartial.Authority));
 
